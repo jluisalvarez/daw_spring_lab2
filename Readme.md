@@ -1,3 +1,93 @@
+# Spring Boot Web App
+
+## Crea un proyecto desde Spring Boot Initializr
+
+http://start.spring.io/
+
+Completa el asistente, seleccionando:
+
+- Gestor Proyecto: Maven
+- Lenguaje: Java
+- Versión de Spring Boot: 3.2.0
+- Project Metadata
+    - Group: daw.example
+    - Artifact: lab2
+    - Name: lab2
+    - Description: Lab2 project for Spring Boot
+    - Package name: daw.example.lab2
+    - Packaging: Jar
+    - Java: 21
+- Dependencias
+    - Spring Boot DevTools
+    - Spring Web
+    - Thymeleaf
+
+Genera el contenido, descárgalo y descomprime. Utiliza el IDE para abrir el proyecto.
+
+## Contenido estático: Imágenes, CSS y JS
+
+Crea las carpetas img, css y js en /src/main/resources/static.
+
+## Vistas: index.html y hello.html
+
+Crea los ficheros en /src/main/resources/templates
+
+Fichero index.html
+
+```html
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <h1 th:text="'Hola, ' + ${user} + '!'">USER</h1>
+
+    <div th:if="${user=='Usuario no identificado'}">
+        <form id="form" action="/form" method="POST">
+            Nombre: <input id="name" type="text" name="name" /> <span id="error_name"></span><br />
+            Clave : <input id="pass" type="password" name="pass" /> <span id="error_pass"></span><br />
+            <input type="submit" value="Enviar" />
+        </form>
+    </div>
+    <div th:unless="${user=='Usuario no identificado'}">
+        <h2>Contenido</h2>
+        <img th:src="@{/img/spring.png}" />
+    </div>
+
+    <script th:src="@{/js/func.js}"></script>
+</body>
+</html>
+```
+
+Fichero hola.html
+
+```html
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <h1>Web App</h1>
+
+    <p th:text="|Hello, ${user} !|">USER</p>
+    <p th:text="|Your password is ${pass} !|">PASS</p>
+
+    <p th:text="|login:, ${user} !|">USER</p>
+
+    <a href="/">Volver</a>
+
+</html>
+```
+
+## Controlador
+
+```java
 package daw.examples.lab2.controllers;
 
 import java.util.Arrays;
@@ -84,3 +174,9 @@ public class UserController {
 	}
 
 }
+```
+
+
+
+
+
