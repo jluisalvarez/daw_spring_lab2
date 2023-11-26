@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+    <h1 th:text="'Hola, ' + ${user} + '!'">USER</h1>
+
+    <div th:if="${user=='Usuario no identificado'}">
+        <form id="form" action="/form" method="POST">
+            Nombre: <input id="name" type="text" name="name" /> <span id="error_name"></span><br />
+            Clave : <input id="pass" type="password" name="pass" /> <span id="error_pass"></span><br />
+            <input type="submit" value="Enviar" />
+        </form>
+    </div>
+    <div th:unless="${user=='Usuario no identificado'}">
+        <h2>Contenido</h2>
+    </div>
+
+    <script th:src="@{/js/func.js}"></script>
+</body>
+</html>
